@@ -24,10 +24,8 @@ def _split_csv(value, default=None):
 
 def _default_dev_origins():
     return [
-        "http://localhost:3000",
-        "http://127.0.0.1:3000",
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
+        "https://phase-records-diploma.onrender.com",
+        "https://phase-records-diploma.vercel.app",
     ]
 
 
