@@ -85,6 +85,7 @@ def serve_media_file(request, path):
 
     response["Accept-Ranges"] = "bytes"
     response["Last-Modified"] = http_date(full_path.stat().st_mtime)
+    response["Cache-Control"] = "public, max-age=604800"
     if encoding:
         response["Content-Encoding"] = encoding
     return response
