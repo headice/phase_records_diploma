@@ -1,0 +1,11 @@
+.deps
+.env
+.venv
+db.sqlite3
+media
+staticfiles
+vendor
+venv
+__pycache__
+**/__pycache__
+*.pyc

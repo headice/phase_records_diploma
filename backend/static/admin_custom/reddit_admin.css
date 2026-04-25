@@ -1,0 +1,113 @@
+html.dark body {
+  background:
+    radial-gradient(circle at top right, rgba(255, 122, 26, 0.18), transparent 45%),
+    radial-gradient(circle at 0% 100%, rgba(130, 58, 8, 0.16), transparent 42%),
+    #090604 !important;
+}
+
+html.dark #main {
+  background: transparent !important;
+}
+
+html.dark #nav-sidebar,
+html.dark #nav-sidebar-inner {
+  background: rgba(12, 8, 6, 0.82) !important;
+  backdrop-filter: blur(12px);
+}
+
+html.dark #nav-sidebar {
+  border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark #nav-sidebar-apps a {
+  border-radius: 0.8rem !important;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+html.dark #nav-sidebar-apps a:hover {
+  background: rgba(255, 255, 255, 0.05) !important;
+  transform: translateX(2px);
+}
+
+html.dark #nav-sidebar-apps a.active {
+  background: rgba(255, 122, 26, 0.14) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 154, 77, 0.2);
+}
+
+html.dark #content .container,
+html.dark #content > div,
+html.dark .bg-white {
+  background: rgba(15, 10, 8, 0.78) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.28);
+}
+
+html.dark table {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark table thead th {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+html.dark table tbody tr {
+  transition: background-color 0.16s ease;
+}
+
+html.dark table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+html.dark input[type="text"],
+html.dark input[type="number"],
+html.dark input[type="email"],
+html.dark input[type="password"],
+html.dark input[type="search"],
+html.dark input[type="url"],
+html.dark input[type="date"],
+html.dark textarea,
+html.dark select {
+  background: rgba(9, 6, 4, 0.88) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: rgb(245, 239, 234) !important;
+  border-radius: 0.75rem !important;
+}
+
+html.dark input:focus,
+html.dark textarea:focus,
+html.dark select:focus {
+  border-color: rgba(255, 154, 77, 0.84) !important;
+  box-shadow: 0 0 0 3px rgba(255, 122, 26, 0.18) !important;
+}
+
+html.dark .submit-row input,
+html.dark .submit-row a,
+html.dark input[type="submit"],
+html.dark button,
+html.dark .button,
+html.dark [role="button"] {
+  border-radius: 0.8rem !important;
+}
+
+html.dark .submit-row input.default,
+html.dark input[type="submit"].default {
+  background: linear-gradient(135deg, #ff8e3a, #ff6a00) !important;
+  border-color: #ff7a1a !important;
+  color: #130a04 !important;
+  font-weight: 700;
+}
+
+html.dark .submit-row input.default:hover,
+html.dark input[type="submit"].default:hover {
+  filter: brightness(1.06);
+}
+
+html.dark .breadcrumbs,
+html.dark .object-tools a,
+html.dark .paginator {
+  background: rgba(15, 10, 8, 0.55) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 0.75rem !important;
+}
