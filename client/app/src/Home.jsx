@@ -524,13 +524,13 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <div className="card p-6 md:p-8 space-y-6">
+            <div className="card max-w-full overflow-hidden p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
+                <div className="min-w-0">
                   <p className="text-xs text-[var(--color-text-dim)] mb-1">Сейчас играет</p>
-                  <p className="font-medium">{currentTrack ? currentTrack.title : hasDemoTracks ? "Выберите трек" : "Треки пока не добавлены"}</p>
+                  <p className="max-w-full truncate font-medium">{currentTrack ? currentTrack.title : hasDemoTracks ? "Выберите трек" : "Треки пока не добавлены"}</p>
                 </div>
-                <div className="flex items-center gap-2">
+                <div className="flex shrink-0 items-center gap-2">
                   <button
                     disabled={!hasDemoTracks}
                     onClick={() => playAdjacentTrack(-1)}
@@ -607,7 +607,7 @@ export default function Home() {
                 <span className="text-xs text-[var(--color-text-dim)]">{Math.round(audioVolume * 100)}%</span>
               </div>
 
-              <div className="space-y-3">
+              <div className="min-w-0 space-y-3">
                 <div className="grid gap-3 md:grid-cols-2">
                   <p className="label-eyebrow">До сведения</p>
                   <p className="label-eyebrow hidden md:block">После сведения</p>
@@ -618,22 +618,22 @@ export default function Home() {
                   </div>
                 )}
                 {hasDemoTracks && demoPairs.map((pair) => (
-                  <div key={pair.id} className="grid gap-3 md:grid-cols-2">
+                  <div key={pair.id} className="grid min-w-0 gap-3 md:grid-cols-2">
                     {[pair.before, pair.after].map((track, index) => (
                       track ? (
                         <button
                           key={track.id}
                           onClick={() => playTrack(track)}
-                          className={`w-full min-h-[64px] flex items-center justify-between p-3.5 rounded-xl border transition text-left ${
+                          className={`min-h-[56px] w-full min-w-0 max-w-full overflow-hidden flex items-center justify-between gap-3 rounded-xl border p-3 text-left transition sm:min-h-[64px] sm:p-3.5 ${
                             currentTrack?.id === track.id
                               ? "border-[var(--color-accent)]/40 bg-[var(--color-accent-dim)]"
                               : "border-white/[0.04] bg-white/[0.02] hover:border-white/[0.08]"
                           }`}
                         >
-                          <span className={`text-sm ${currentTrack?.id === track.id ? "text-white font-medium" : "text-[var(--color-text-muted)]"}`}>
+                          <span className={`min-w-0 flex-1 overflow-hidden break-words text-sm leading-snug ${currentTrack?.id === track.id ? "text-white font-medium" : "text-[var(--color-text-muted)]"}`}>
                             {track.title}
                           </span>
-                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
+                          <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
                             currentTrack?.id === track.id ? "bg-[var(--color-accent)]" : "bg-white/[0.04]"
                           }`}>
                             {currentTrack?.id === track.id && isPlaying
@@ -655,7 +655,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <audio ref={audioRef} src={currentTrack?.src} hidden />
+            <audio ref={audioRef} src={currentTrack?.src} preload="metadata" style={{ display: "none" }} />
           </div>
         </section>
 
