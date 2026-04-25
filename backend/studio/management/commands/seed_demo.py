@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from studio.models import FAQ, PluginProduct, Review, Service, User
+from studio.models import DemoTrack, FAQ, PluginProduct, Review, Service, User
 
 
 class Command(BaseCommand):
@@ -129,6 +129,57 @@ class Command(BaseCommand):
         ]
         for data in plugins:
             PluginProduct.objects.update_or_create(slug=data["slug"], defaults=data)
+
+        demo_tracks = [
+            {
+                "title": "2hollis flash by Skrillex - before mixing",
+                "kind": DemoTrack.KIND_BEFORE,
+                "pair_key": "flash",
+                "audio_file": "demo_tracks/2hollis_-_flash_official_video.mp3",
+                "order": 1,
+            },
+            {
+                "title": "2hollis - flash by Skrillex",
+                "kind": DemoTrack.KIND_AFTER,
+                "pair_key": "flash",
+                "audio_file": "demo_tracks/2hollis_-_flash_official_video_c2SCeqJ.mp3",
+                "order": 2,
+            },
+            {
+                "title": "Forever Rolling by Leslie - before mixing",
+                "kind": DemoTrack.KIND_BEFORE,
+                "pair_key": "forever-rolling",
+                "audio_file": "demo_tracks/FOREVER_ROLLING.mp3",
+                "order": 3,
+            },
+            {
+                "title": "Forever Rolling by Leslie - after mixing",
+                "kind": DemoTrack.KIND_AFTER,
+                "pair_key": "forever-rolling",
+                "audio_file": "demo_tracks/FOREVER_ROLLING_rJq3VZa.mp3",
+                "order": 4,
+            },
+            {
+                "title": "HIM(His Infernal Majesty) - Join me in death by Leslie",
+                "kind": DemoTrack.KIND_BEFORE,
+                "pair_key": "join-me-in-death",
+                "audio_file": "demo_tracks/HIM_-_Join_Me_In_Death.mp3",
+                "order": 5,
+            },
+            {
+                "title": "HIM(His Infernal Majesty) - Join me in death by Leslie - after mixing",
+                "kind": DemoTrack.KIND_AFTER,
+                "pair_key": "join-me-in-death",
+                "audio_file": "demo_tracks/HIM_-_Join_Me_In_Death_a7Amxli.mp3",
+                "order": 6,
+            },
+        ]
+        for data in demo_tracks:
+            DemoTrack.objects.update_or_create(
+                pair_key=data["pair_key"],
+                kind=data["kind"],
+                defaults=data,
+            )
 
         faqs = [
             ("Как забронировать запись?", "Выберите услугу «Запись» и оставьте заявку или сразу забронируйте слот."),
