@@ -8,4 +8,4 @@ if [ "${SEED_DEMO_DATA:-true}" = "true" ]; then
     python manage.py seed_demo
 fi
 
-gunicorn phase_backend.wsgi:application --bind 0.0.0.0:8000 --workers 3
+gunicorn phase_backend.wsgi:application
