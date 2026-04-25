@@ -20,5 +20,4 @@ urlpatterns = [
     ),
 ]
 
-if settings.DEBUG:
-    urlpatterns += [path("media/<path:path>", serve_media_file, name="media")]
+urlpatterns += [path("media/<path:path>", serve_media_file, name="media")]
