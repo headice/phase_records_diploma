@@ -75,7 +75,7 @@ export default function Contacts() {
         eyebrow="Контакты студии"
         title="Как с нами"
         titleAccent="связаться?"
-        description="Вопросы по релизам, коммерции и сотрудничеству — выберите удобный канал связи."
+        description="Вопросы по релизам, коммерции и сотрудничеству — выберите удобный способ связи."
         backgroundImage={heroContacts}
       >
         <div className="flex flex-wrap gap-3 pt-3">
