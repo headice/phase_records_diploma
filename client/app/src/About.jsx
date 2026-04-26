@@ -5,7 +5,7 @@ import PageShell from "./components/layout/PageShell.jsx";
 import PageHero from "./components/ui/PageHero.jsx";
 import Reveal from "./components/ui/Reveal.jsx";
 import RequestModal from "./components/RequestModal.jsx";
-import heroabout from "./img/hero_about.jpg";
+import heroabout from "./img/hero_about_optimized.jpg";
 import engineer1 from "./img/staff1.jpg";
 import engineer2 from "./img/staff2.png";
 import engineer3 from "./img/staff3jpg.jpg";

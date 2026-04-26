@@ -6,7 +6,7 @@ import Reveal from "./components/ui/Reveal.jsx";
 import SocialIcon from "./components/SocialIcon.jsx";
 import { ShopContext } from "./context/ShopContext";
 import { sanitize, isValidContact, canSubmit } from "./utils/sanitize";
-import heroContacts from "./img/hero_contatcs.jpg";
+import heroContacts from "./img/hero_contatcs_optimized.jpg";
 import "./input.css";
 
 const contactChannels = [

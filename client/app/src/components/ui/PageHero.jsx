@@ -5,7 +5,15 @@ export default function PageHero({ eyebrow, title, titleAccent, description, chi
     <section className="relative w-full overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20 min-h-[50vh] flex items-end">
       {backgroundImage && (
         <>
-          <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${backgroundImage})` }} />
+          <img
+            src={backgroundImage}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            fetchPriority="high"
+            loading="eager"
+            decoding="async"
+          />
           <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/50" />
         </>
       )}
