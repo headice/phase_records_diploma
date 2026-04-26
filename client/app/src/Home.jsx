@@ -27,7 +27,15 @@ import dawInfo from "./img/dawvst_info_display.jpg";
 
 function Reveal({ children, className = "", delay = 0 }) {
   const ref = useRef(null);
+  const liteMotion = useLiteMotion();
   const inView = useInView(ref, { once: true, margin: "-60px" });
+  if (liteMotion) {
+    return (
+      <div ref={ref} className={className}>
+        {children}
+      </div>
+    );
+  }
   return (
     <motion.div
       ref={ref}
@@ -118,6 +126,14 @@ export default function Home() {
   const audioTracks = managedDemoTracks || [];
   const hasDemoTracks = audioTracks.length > 0;
   const demoPairs = useMemo(() => buildDemoPairs(audioTracks), [audioTracks]);
+  const beforeTracks = useMemo(
+    () => demoPairs.map((pair) => pair.before).filter(Boolean),
+    [demoPairs]
+  );
+  const afterTracks = useMemo(
+    () => demoPairs.map((pair) => pair.after).filter(Boolean),
+    [demoPairs]
+  );
   const orderedAudioTracks = useMemo(
     () => demoPairs.flatMap((pair) => [pair.before, pair.after].filter(Boolean)),
     [demoPairs]
@@ -278,6 +294,29 @@ export default function Home() {
   };
 
   const activeEquip = equipTabs.find((t) => t.id === activeEquipTab) || equipTabs[0];
+  const renderTrackButton = (track) => (
+    <button
+      key={track.id}
+      onClick={() => playTrack(track)}
+      className={`min-h-[56px] w-full min-w-0 max-w-full overflow-hidden flex items-center justify-between gap-3 rounded-xl border p-3 text-left transition sm:min-h-[64px] sm:p-3.5 ${
+        currentTrack?.id === track.id
+          ? "border-[var(--color-accent)]/40 bg-[var(--color-accent-dim)]"
+          : "border-white/[0.04] bg-white/[0.02] hover:border-white/[0.08]"
+      }`}
+    >
+      <span className={`min-w-0 flex-1 overflow-hidden break-words text-sm leading-snug ${currentTrack?.id === track.id ? "text-white font-medium" : "text-[var(--color-text-muted)]"}`}>
+        {track.title}
+      </span>
+      <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
+        currentTrack?.id === track.id ? "bg-[var(--color-accent)]" : "bg-white/[0.04]"
+      }`}>
+        {currentTrack?.id === track.id && isPlaying
+          ? <Pause size={12} className={currentTrack?.id === track.id ? "text-black" : ""} />
+          : <Play size={12} className={`ml-0.5 ${currentTrack?.id === track.id ? "text-black" : ""}`} />
+        }
+      </div>
+    </button>
+  );
 
   return (
     <div className="bg-[var(--color-bg)] text-white min-h-screen flex flex-col" style={{ fontFamily: "var(--font-body)" }}>
@@ -535,7 +574,7 @@ export default function Home() {
               </div>
             </Reveal>
 
-            <div className="card max-w-full overflow-hidden p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6">
+            <div className="card max-w-full overflow-visible md:overflow-hidden p-4 sm:p-6 md:p-8 space-y-5 sm:space-y-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div className="min-w-0">
                   <p className="text-xs text-[var(--color-text-dim)] mb-1">Сейчас играет</p>
@@ -598,7 +637,7 @@ export default function Home() {
                     />
                   </div>
                   <span
-                    className="absolute h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--color-accent)] shadow-[0_0_0_4px_rgba(232,118,45,0.12)]"
+                    className={`absolute h-3 w-3 -translate-x-1/2 rounded-full bg-[var(--color-accent)] ${liteMotion ? "" : "shadow-[0_0_0_4px_rgba(232,118,45,0.12)]"}`}
                     style={{ left: `${timelineProgress}%` }}
                   />
                 </div>
@@ -618,47 +657,51 @@ export default function Home() {
                 <span className="text-xs text-[var(--color-text-dim)]">{Math.round(audioVolume * 100)}%</span>
               </div>
 
-              <div className="min-w-0 space-y-3">
-                <div className="grid gap-3 md:grid-cols-2">
-                  <p className="label-eyebrow">До сведения</p>
-                  <p className="label-eyebrow hidden md:block">После сведения</p>
+              <div className="min-w-0 space-y-5">
+                {hasDemoTracks && (
+                  <div className="space-y-4 md:hidden">
+                    <div className="space-y-3">
+                      <p className="label-eyebrow">{"\u0414\u043e \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f"}</p>
+                      {beforeTracks.length > 0 ? (
+                        beforeTracks.map(renderTrackButton)
+                      ) : (
+                        <div className="rounded-xl border border-dashed border-white/[0.04] bg-white/[0.01] px-3.5 py-4 text-xs text-[var(--color-text-dim)]">
+                          {"\u0422\u0440\u0435\u043a\u0438 \u0434\u043e \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u043f\u043e\u043a\u0430 \u043d\u0435 \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u044b."}
+                        </div>
+                      )}
+                    </div>
+                    <div className="space-y-3">
+                      <p className="label-eyebrow">{"\u041f\u043e\u0441\u043b\u0435 \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f"}</p>
+                      {afterTracks.length > 0 ? (
+                        afterTracks.map(renderTrackButton)
+                      ) : (
+                        <div className="rounded-xl border border-dashed border-white/[0.04] bg-white/[0.01] px-3.5 py-4 text-xs text-[var(--color-text-dim)]">
+                          {"\u0422\u0440\u0435\u043a\u0438 \u043f\u043e\u0441\u043b\u0435 \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f \u043f\u043e\u043a\u0430 \u043d\u0435 \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u044b."}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+                <div className="hidden md:grid gap-3 md:grid-cols-2">
+                  <p className="label-eyebrow">{"\u0414\u043e \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f"}</p>
+                  <p className="label-eyebrow">{"\u041f\u043e\u0441\u043b\u0435 \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f"}</p>
                 </div>
                 {!hasDemoTracks && (
                   <div className="rounded-xl border border-dashed border-white/[0.06] bg-white/[0.02] p-5 text-sm text-[var(--color-text-muted)]">
-                    Демо-треки пока не добавлены.
+                    {"\u0414\u0435\u043c\u043e-\u0442\u0440\u0435\u043a\u0438 \u043f\u043e\u043a\u0430 \u043d\u0435 \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d\u044b."}
                   </div>
                 )}
                 {hasDemoTracks && demoPairs.map((pair) => (
-                  <div key={pair.id} className="grid min-w-0 gap-3 md:grid-cols-2">
+                  <div key={pair.id} className="hidden md:grid min-w-0 gap-3 md:grid-cols-2">
                     {[pair.before, pair.after].map((track, index) => (
                       track ? (
-                        <button
-                          key={track.id}
-                          onClick={() => playTrack(track)}
-                          className={`min-h-[56px] w-full min-w-0 max-w-full overflow-hidden flex items-center justify-between gap-3 rounded-xl border p-3 text-left transition sm:min-h-[64px] sm:p-3.5 ${
-                            currentTrack?.id === track.id
-                              ? "border-[var(--color-accent)]/40 bg-[var(--color-accent-dim)]"
-                              : "border-white/[0.04] bg-white/[0.02] hover:border-white/[0.08]"
-                          }`}
-                        >
-                          <span className={`min-w-0 flex-1 overflow-hidden break-words text-sm leading-snug ${currentTrack?.id === track.id ? "text-white font-medium" : "text-[var(--color-text-muted)]"}`}>
-                            {track.title}
-                          </span>
-                          <div className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
-                            currentTrack?.id === track.id ? "bg-[var(--color-accent)]" : "bg-white/[0.04]"
-                          }`}>
-                            {currentTrack?.id === track.id && isPlaying
-                              ? <Pause size={12} className={currentTrack?.id === track.id ? "text-black" : ""} />
-                              : <Play size={12} className={`ml-0.5 ${currentTrack?.id === track.id ? "text-black" : ""}`} />
-                            }
-                          </div>
-                        </button>
+                        renderTrackButton(track)
                       ) : (
                         <div
                           key={`${pair.id}-${index}`}
-                          className="hidden md:flex min-h-[64px] items-center rounded-xl border border-dashed border-white/[0.04] bg-white/[0.01] px-3.5 text-xs text-[var(--color-text-dim)]"
+                          className="flex min-h-[64px] items-center rounded-xl border border-dashed border-white/[0.04] bg-white/[0.01] px-3.5 text-xs text-[var(--color-text-dim)]"
                         >
-                          Нет пары до сведения
+                          {index === 0 ? "\u041d\u0435\u0442 \u043f\u0430\u0440\u044b \u0434\u043e \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f" : "\u041d\u0435\u0442 \u043f\u0430\u0440\u044b \u043f\u043e\u0441\u043b\u0435 \u0441\u0432\u0435\u0434\u0435\u043d\u0438\u044f"}
                         </div>
                       )
                     ))}
