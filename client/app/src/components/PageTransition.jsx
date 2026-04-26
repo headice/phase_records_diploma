@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import useLiteMotion from "../hooks/useLiteMotion";
 
 const transition = {
   duration: 0.35,
@@ -7,6 +8,12 @@ const transition = {
 };
 
 export default function PageTransition({ children }) {
+  const liteMotion = useLiteMotion();
+
+  if (liteMotion) {
+    return <div className="min-h-screen">{children}</div>;
+  }
+
   return (
     <motion.div
       className="min-h-screen"

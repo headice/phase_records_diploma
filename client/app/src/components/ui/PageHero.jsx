@@ -1,6 +1,9 @@
 import { motion } from "framer-motion";
+import useLiteMotion from "../../hooks/useLiteMotion";
 
 export default function PageHero({ eyebrow, title, titleAccent, description, children, backgroundImage }) {
+  const liteMotion = useLiteMotion();
+
   return (
     <section className="relative w-full overflow-hidden pt-28 pb-16 md:pt-36 md:pb-20 min-h-[50vh] flex items-end">
       {backgroundImage && (
@@ -23,9 +26,9 @@ export default function PageHero({ eyebrow, title, titleAccent, description, chi
       <div className="relative z-10 max-w-[1400px] mx-auto px-5 md:px-8 w-full">
         <motion.div
           className="max-w-3xl space-y-5"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+          initial={liteMotion ? false : { opacity: 0, y: 30 }}
+          animate={liteMotion ? undefined : { opacity: 1, y: 0 }}
+          transition={liteMotion ? undefined : { duration: 0.7, delay: 0.15 }}
         >
           {eyebrow && <p className="label-eyebrow">{eyebrow}</p>}
           <h1 className="heading-display text-[clamp(2rem,5vw,3.5rem)]">

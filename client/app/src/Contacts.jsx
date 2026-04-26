@@ -91,7 +91,7 @@ export default function Contacts() {
         </div>
       </PageHero>
 
-      <div className="max-w-[1400px] mx-auto px-5 md:px-8 py-20">
+      <div className="max-w-[1400px] mx-auto px-5 md:px-8 py-20 content-auto">
         <div className="grid gap-12 lg:gap-16 lg:grid-cols-[1.1fr_1fr] items-start">
           <div className="space-y-10">
             <Reveal>

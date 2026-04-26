@@ -5,6 +5,7 @@ import { Suspense, lazy, useEffect, useLayoutEffect } from "react";
 import { ShopProvider } from "./context/ShopContext";
 import { AuthProvider } from "./context/AuthContext";
 import PageTransition from "./components/PageTransition.jsx";
+import useLiteMotion from "./hooks/useLiteMotion";
 
 const Home = lazy(() => import("./Home.jsx"));
 const About = lazy(() => import("./About.jsx"));
@@ -144,9 +145,10 @@ function LoadingFallback() {
 
 function AppRoutes() {
   const location = useLocation();
+  const liteMotion = useLiteMotion();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode={liteMotion ? "sync" : "wait"} initial={false}>
       <Suspense fallback={<LoadingFallback />}>
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<PageTransition><Home /></PageTransition>} />

@@ -6,7 +6,7 @@ import PageHero from "./components/ui/PageHero.jsx";
 import Reveal from "./components/ui/Reveal.jsx";
 import { ShopContext } from "./context/ShopContext";
 import { AuthContext } from "./context/AuthContext";
-import heroMicro from "./img/hero_micro.png";
+import heroMicro from "./img/hero_micro_optimized.jpg";
 import {
   clearBookingDraft,
   peekBookingDraft,

@@ -162,7 +162,7 @@ export default function Shop() {
         </div>
       </PageHero>
 
-      <div className="max-w-[1400px] mx-auto px-5 md:px-8 py-20 space-y-24">
+      <div className="max-w-[1400px] mx-auto px-5 md:px-8 py-20 space-y-24 content-auto">
         {!isPluginsRoute && (
         <section id="services-catalog">
           <Reveal>

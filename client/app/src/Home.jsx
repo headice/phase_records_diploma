@@ -11,8 +11,9 @@ import Footer from "./components/Footer.jsx";
 import RequestModal from "./components/RequestModal.jsx";
 import { ShopContext } from "./context/ShopContext";
 import { AuthContext } from "./context/AuthContext";
-import heroImg from "./img/zvukovoi-mikser-v-studii-bg2.jpg";
-import studioImg from "./img/studio_info_display.jpg";
+import useLiteMotion from "./hooks/useLiteMotion";
+import heroImg from "./img/hero_home_optimized.jpg";
+import studioImg from "./img/studio_info_display_optimized.jpg";
 import vultures2 from "./img/vultures_2.jpg";
 import nightsLikeThis from "./img/nights-like-this.jpg";
 import sensational from "./img/sensational.jpg";
@@ -21,7 +22,7 @@ import boy from "./img/2hollis_boy_album_cover.jpg";
 import iAmMusic from "./img/i_am_music.png";
 import longLiveAsap from "./img/long_live_asap.jpg";
 import heroesVillains from "./img/heroes_and_villians.jpg";
-import studioInfo from "./img/pc_studio_info_display.jpg";
+import studioInfo from "./img/pc_studio_info_display_optimized.jpg";
 import dawInfo from "./img/dawvst_info_display.jpg";
 
 function Reveal({ children, className = "", delay = 0 }) {
@@ -98,6 +99,7 @@ const serviceIcons = { recording: Mic, mix: Sliders, arrangements: Music, fullso
 
 export default function Home() {
   const navigate = useNavigate();
+  const liteMotion = useLiteMotion();
   const [requestOpen, setRequestOpen] = useState(false);
   const { services, faq, reviews, plugins, demoTracks: managedDemoTracks, addToCart } = useContext(ShopContext);
   const { requireAuth } = useContext(AuthContext);
@@ -284,7 +286,15 @@ export default function Home() {
       <main className="flex-1">
         <section className="relative min-h-[100vh] flex items-center overflow-hidden">
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${heroImg})` }} />
+            <img
+              src={heroImg}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover object-center"
+              fetchPriority="high"
+              loading="eager"
+              decoding="async"
+            />
             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/50" />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-bg)] via-transparent to-black/40" />
             <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[var(--color-bg)] to-transparent" />
@@ -295,15 +305,15 @@ export default function Home() {
 
           <div className="relative z-10 w-full max-w-[1400px] mx-auto px-5 md:px-8 pt-32 pb-20 lg:pt-40 lg:pb-28">
             <div className="max-w-3xl space-y-8">
-              <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
+              <motion.div initial={liteMotion ? false : { opacity: 0, y: 30 }} animate={liteMotion ? undefined : { opacity: 1, y: 0 }} transition={liteMotion ? undefined : { duration: 0.8, delay: 0.2 }}>
                 
               </motion.div>
 
               <motion.h1
                 className="heading-display text-[clamp(2.5rem,6vw,5rem)]"
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.9, delay: 0.35 }}
+                initial={liteMotion ? false : { opacity: 0, y: 40 }}
+                animate={liteMotion ? undefined : { opacity: 1, y: 0 }}
+                transition={liteMotion ? undefined : { duration: 0.9, delay: 0.35 }}
               >
                 PHASE RECORDS
                 <br />
@@ -312,9 +322,9 @@ export default function Home() {
 
               <motion.p
                 className="text-lg md:text-xl text-[var(--color-text-muted)] max-w-xl leading-relaxed"
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
+                initial={liteMotion ? false : { opacity: 0, y: 30 }}
+                animate={liteMotion ? undefined : { opacity: 1, y: 0 }}
+                transition={liteMotion ? undefined : { duration: 0.8, delay: 0.5 }}
               >
                 Запись, сведение, мастеринг и авторский продакшн.
                 Техническая поддержка на каждом этапе — от первого дубля до стриминговых площадок.
@@ -322,9 +332,9 @@ export default function Home() {
 
               <motion.div
                 className="flex flex-wrap gap-3 pt-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.65 }}
+                initial={liteMotion ? false : { opacity: 0, y: 20 }}
+                animate={liteMotion ? undefined : { opacity: 1, y: 0 }}
+                transition={liteMotion ? undefined : { duration: 0.7, delay: 0.65 }}
               >
                 <button onClick={goToBooking} className="btn-primary">
                   Забронировать время
@@ -337,9 +347,9 @@ export default function Home() {
 
               <motion.div
                 className="flex gap-8 pt-6"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 0.85 }}
+                initial={liteMotion ? false : { opacity: 0 }}
+                animate={liteMotion ? undefined : { opacity: 1 }}
+                transition={liteMotion ? undefined : { duration: 0.6, delay: 0.85 }}
               >
                 {[
                   { value: "100+", label: "релизов" },
@@ -357,15 +367,15 @@ export default function Home() {
 
           <motion.div
             className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
+            animate={liteMotion ? undefined : { y: [0, 8, 0] }}
+            transition={liteMotion ? undefined : { duration: 2, repeat: Infinity }}
           >
             <ChevronDown size={20} className="text-[var(--color-text-dim)]" />
           </motion.div>
         </section>
 
-        <section className="py-6 border-y border-white/[0.04] overflow-hidden bg-[var(--color-bg-raised)]">
-          <div className="flex whitespace-nowrap" style={{ animation: "marquee 30s linear infinite" }}>
+        <section className="content-auto py-6 border-y border-white/[0.04] overflow-hidden bg-[var(--color-bg-raised)]">
+          <div className="flex whitespace-nowrap" style={{ animation: liteMotion ? "none" : "marquee 30s linear infinite" }}>
             {[...Array(2)].map((_, i) => (
               <span key={i} className="text-sm font-medium tracking-wider text-[var(--color-text-dim)] mx-4">
                 BUSHIDO ZHO · BLAGO WHITE · FEDUK · FLESH · KYIVSTONER · LOVV66 · MAYOT · OG BUDA · SEEMEE · SODA LUV · YANIX · ЕГОР КРИД · ПЛАТИНА · LIL YACHTY · YN JAY · AZIZI GIBSON ·&nbsp;
@@ -374,7 +384,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="services" className="py-24 lg:py-32">
+        <section id="services" className="content-auto py-24 lg:py-32">
           <div className="max-w-[1400px] mx-auto px-5 md:px-8">
             <Reveal>
               <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 mb-16">
@@ -430,7 +440,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-24 lg:py-32 bg-[var(--color-bg-raised)] relative overflow-hidden">
+        <section className="content-auto py-24 lg:py-32 bg-[var(--color-bg-raised)] relative overflow-hidden">
           <div className="divider-glow absolute top-0 inset-x-0" />
           <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-[var(--color-accent)]/5 blur-[200px]" />
 
@@ -467,7 +477,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="portfolio" className="py-24 lg:py-32">
+        <section id="portfolio" className="content-auto py-24 lg:py-32">
           <div className="max-w-[1400px] mx-auto px-5 md:px-8">
             <Reveal>
               <div className="mb-12 space-y-3">
@@ -510,7 +520,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="py-24 lg:py-32 bg-[var(--color-bg-raised)] relative">
+        <section className="content-auto py-24 lg:py-32 bg-[var(--color-bg-raised)] relative">
           <div className="divider-glow absolute top-0 inset-x-0" />
           <div className="max-w-[1400px] mx-auto px-5 md:px-8">
             <Reveal>
@@ -660,7 +670,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="equipment" className="py-24 lg:py-32">
+        <section id="equipment" className="content-auto py-24 lg:py-32">
           <div className="max-w-[1400px] mx-auto px-5 md:px-8">
             <Reveal>
               <div className="mb-12 space-y-3">
@@ -713,7 +723,7 @@ export default function Home() {
         </section>
 
         {reviews.length > 0 && (
-          <section id="reviews" className="py-24 lg:py-32 bg-[var(--color-bg-raised)]">
+          <section id="reviews" className="content-auto py-24 lg:py-32 bg-[var(--color-bg-raised)]">
             <div className="divider-glow absolute inset-x-0" style={{ top: "auto" }} />
             <div className="max-w-[1400px] mx-auto px-5 md:px-8">
               <Reveal>
@@ -755,7 +765,7 @@ export default function Home() {
         )}
 
         {faq.length > 0 && (
-          <section id="faq" className="py-24 lg:py-32">
+          <section id="faq" className="content-auto py-24 lg:py-32">
             <div className="max-w-3xl mx-auto px-5 md:px-8">
               <Reveal>
                 <div className="text-center mb-12 space-y-3">
@@ -793,7 +803,7 @@ export default function Home() {
           </section>
         )}
 
-        <section className="py-24 lg:py-32 relative overflow-hidden">
+        <section className="content-auto py-24 lg:py-32 relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/10 via-transparent to-[var(--color-accent)]/5" />
           <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] rounded-full bg-[var(--color-accent)]/8 blur-[200px]" />
 
