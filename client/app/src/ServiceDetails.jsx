@@ -144,7 +144,7 @@ export default function ServiceDetails() {
           <div className="grid gap-6 lg:grid-cols-2">
             <Reveal>
               <div className="rounded-2xl overflow-hidden border border-white/[0.04] h-64 lg:h-80">
-                <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+                <img src={service.image} alt={service.title} className="w-full h-full object-cover" decoding="async" />
               </div>
             </Reveal>
             <Reveal delay={0.1}>

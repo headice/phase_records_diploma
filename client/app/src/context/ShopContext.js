@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useLocation } from "react-router-dom";
 import api from "../api/client";
 import { AuthContext } from "./AuthContext";
 import arrImg from "../img/arr.jpg";
@@ -74,6 +75,7 @@ export const ShopContext = createContext({
 
 export function ShopProvider({ children }) {
   const { isAuthenticated } = useContext(AuthContext);
+  const location = useLocation();
   const [services, setServices] = useState([]);
   const [plugins, setPlugins] = useState([]);
   const [demoTracks, setDemoTracks] = useState([]);
@@ -83,6 +85,18 @@ export function ShopProvider({ children }) {
   const [bookings, setBookings] = useState([]);
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const shouldLoadCatalog = useMemo(() => {
+    const { pathname } = location;
+    return (
+      pathname === "/" ||
+      pathname === "/services" ||
+      pathname === "/plugins" ||
+      pathname === "/booking" ||
+      pathname.startsWith("/services/") ||
+      pathname.startsWith("/plugins/")
+    );
+  }, [location]);
 
   const mapService = useCallback(
     (service) => ({
@@ -260,8 +274,11 @@ export function ShopProvider({ children }) {
   }, [isAuthenticated, mapOrder]);
 
   useEffect(() => {
+    if (!shouldLoadCatalog) {
+      return;
+    }
     refreshCatalog();
-  }, [refreshCatalog]);
+  }, [refreshCatalog, shouldLoadCatalog]);
 
   useEffect(() => {
     if (isAuthenticated) {

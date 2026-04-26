@@ -16,7 +16,7 @@ export default function Login() {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
   const { addToCart } = useContext(ShopContext);
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({ identifier: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -64,9 +64,9 @@ export default function Login() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const email = sanitize(formData.email);
-    if (!isValidEmail(email)) {
-      setError("Введите корректный email.");
+    const identifier = sanitize(formData.identifier);
+    if (!identifier || identifier.length < 3) {
+      setError("Введите email или username.");
       return;
     }
     if (!formData.password || formData.password.length < 6) {
@@ -75,7 +75,11 @@ export default function Login() {
     }
 
     setLoading(true);
-    const result = await login({ email, password: formData.password });
+    const result = await login(
+      isValidEmail(identifier)
+        ? { email: identifier, password: formData.password }
+        : { username: identifier, password: formData.password }
+    );
     setLoading(false);
 
     if (!result.success) {
@@ -103,16 +107,16 @@ export default function Login() {
           <div className="card glow-accent p-6 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               <label className="block">
-                <span className="label-eyebrow block mb-2 text-xs">Email</span>
+                <span className="label-eyebrow block mb-2 text-xs">Email или username</span>
                 <input
                   required
-                  type="email"
-                  name="email"
-                  value={formData.email}
+                  type="text"
+                  name="identifier"
+                  value={formData.identifier}
                   onChange={handleChange}
-                  placeholder="you@example.com"
+                  placeholder="you@example.com или username"
                   className="input-field"
-                  autoComplete="email"
+                  autoComplete="username"
                 />
               </label>
               <label className="block">

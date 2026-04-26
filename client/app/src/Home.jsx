@@ -496,6 +496,7 @@ export default function Home() {
                         alt={r.title}
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
+                        decoding="async"
                       />
                     </div>
                     <div className="p-3">
@@ -692,6 +693,8 @@ export default function Home() {
                   src={activeEquip.image}
                   alt={activeEquip.label}
                   className="w-full h-full object-cover transition-all duration-500"
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className="card p-6 md:p-8 space-y-4">

@@ -252,16 +252,16 @@ function RouteMeta() {
 export default function App() {
   return (
     <div className="App">
-      <AuthProvider>
-        <ShopProvider>
-          <BrowserRouter>
+      <BrowserRouter>
+        <AuthProvider>
+          <ShopProvider>
             <ScrollToTop />
             <ScrollToHash />
             <RouteMeta />
             <AppRoutes />
-          </BrowserRouter>
-        </ShopProvider>
-      </AuthProvider>
+          </ShopProvider>
+        </AuthProvider>
+      </BrowserRouter>
     </div>
   );
 }

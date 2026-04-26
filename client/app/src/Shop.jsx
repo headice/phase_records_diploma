@@ -243,6 +243,7 @@ export default function Shop() {
                       alt={plugin.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                       loading="lazy"
+                      decoding="async"
                     />
                     {plugin.discount && (
                       <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-[var(--color-accent)] text-black text-[10px] font-bold uppercase">

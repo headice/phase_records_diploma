@@ -126,7 +126,7 @@ export default function PluginDetails() {
           <div className="grid gap-6 lg:grid-cols-2">
             <Reveal>
               <div className="rounded-2xl overflow-hidden border border-white/[0.04] h-64 lg:h-80 bg-black/50 flex items-center justify-center">
-                <img src={plugin.image} alt={plugin.name} className="w-full h-full object-cover" />
+                <img src={plugin.image} alt={plugin.name} className="w-full h-full object-cover" decoding="async" />
               </div>
             </Reveal>
             <Reveal delay={0.1}>

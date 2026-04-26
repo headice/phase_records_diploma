@@ -52,9 +52,10 @@ export function AuthProvider({ children }) {
     loadProfile();
   }, [loadProfile]);
 
-  const login = useCallback(async ({ email, password }) => {
+  const login = useCallback(async ({ email, username, password }) => {
     try {
-      const { data } = await api.post("auth/login/", { email, password });
+      const payload = email ? { email, password } : { username, password };
+      const { data } = await api.post("auth/login/", payload);
       setTokens({ access: data.access, refresh: data.refresh });
       setUser(data.user);
       return { success: true };
