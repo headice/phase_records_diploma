@@ -82,6 +82,10 @@
 
 @media (max-width: 767px), (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .content-auto {
+    content-visibility: visible !important;
+    contain-intrinsic-size: auto !important;
+  }
   .btn-primary,
   .btn-ghost,
   .card,
@@ -96,5 +100,8 @@
   .glow-accent,
   .card.glow-accent {
     box-shadow: none !important;
+  }
+  .divider-glow {
+    background: rgba(232,118,45,0.12) !important;
   }
 }

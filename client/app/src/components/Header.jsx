@@ -51,7 +51,7 @@ export default function Header() {
       <header
         className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${
           scrolled
-            ? "bg-[#050505]/90 backdrop-blur-xl border-b border-white/[0.04]"
+            ? "bg-[#050505]/95 md:bg-[#050505]/90 md:backdrop-blur-xl border-b border-white/[0.04]"
             : "bg-transparent"
         }`}
       >
@@ -149,7 +149,7 @@ export default function Header() {
 
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-[60] bg-[#050505]/98 backdrop-blur-2xl lg:hidden"
+          className="fixed inset-0 z-[60] bg-[#050505]/98 md:backdrop-blur-2xl lg:hidden"
           style={{ animation: "fadeIn 0.2s ease" }}
         >
           <div className="flex items-center justify-between px-5 py-4">
