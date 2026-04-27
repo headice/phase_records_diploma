@@ -149,90 +149,96 @@ export default function Header() {
 
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-[60] bg-[#050505]/98 md:backdrop-blur-2xl lg:hidden"
+          className="fixed inset-0 z-[60] bg-black/72 lg:hidden"
           style={{ animation: "fadeIn 0.2s ease" }}
         >
-          <div className="flex items-center justify-between px-5 py-4">
-            <button onClick={() => { navigate("/"); setMobileOpen(false); }} className="flex items-center gap-3">
-              <img
-                src={Logo}
-                alt=""
-                className="h-10 w-10 rounded-full object-contain drop-shadow-[0_0_24px_rgba(232,118,45,0.28)]"
-              />
-              <p className="text-sm font-semibold" style={{ fontFamily: "var(--font-display)" }}>
-                PHASE<span className="text-[var(--color-accent)]"> RECORDS</span>
-              </p>
-            </button>
-            <button
-              type="button"
-              className="p-2 rounded-lg text-white hover:bg-white/[0.06]"
-              onClick={() => setMobileOpen(false)}
-              aria-label="Закрыть меню"
-            >
-              <X size={22} />
-            </button>
-          </div>
-
-          <nav className="px-5 pt-6 space-y-1">
-            {navItems.map((item, i) => (
-              <NavLink
-                key={item.path}
-                to={item.path}
-                onClick={() => setMobileOpen(false)}
-                className={({ isActive }) =>
-                  `flex items-center justify-between py-4 px-4 rounded-xl text-lg font-medium transition-colors ${
-                    isActive
-                      ? "text-[var(--color-accent)] bg-[var(--color-accent-dim)]"
-                      : "text-white hover:bg-white/[0.04]"
-                  }`
-                }
-                style={{ animation: `slideUp 0.3s ease ${i * 0.04}s both` }}
-              >
-                <span>{item.label}</span>
-                <ChevronRight size={16} className="opacity-30" />
-              </NavLink>
-            ))}
-
-            <div className="pt-4 space-y-1">
-              <button
-                onClick={() => guardedNavigate("/cart")}
-                className="flex items-center justify-between w-full py-4 px-4 rounded-xl text-lg font-medium text-white hover:bg-white/[0.04]"
-              >
-                <span>Корзина</span>
-                <span className="relative inline-flex">
-                  <ShoppingCart size={18} className="opacity-40" />
-                  {cartCount > 0 && (
-                    <span className="absolute -right-2.5 -top-2.5 min-w-[18px] h-[18px] rounded-full bg-[var(--color-accent)] px-1 text-center text-[10px] font-bold leading-[18px] text-black shadow-[0_0_18px_rgba(232,118,45,0.55)]">
-                      {cartCountLabel}
-                    </span>
-                  )}
-                </span>
-              </button>
-              <button
-                onClick={() => guardedNavigate("/profile")}
-                className="flex items-center justify-between w-full py-4 px-4 rounded-xl text-lg font-medium text-white hover:bg-white/[0.04]"
-              >
-                <span>Профиль</span>
-                <User size={18} className="opacity-40" />
-              </button>
-            </div>
-
-            <div className="pt-6 px-4">
-              {isAuthenticated ? (
-                <button
-                  onClick={() => { logout(); setMobileOpen(false); }}
-                  className="btn-ghost w-full"
-                >
-                  Выйти
+          <div className="h-full w-full max-w-[360px] border-r border-white/[0.06] bg-[linear-gradient(180deg,#0b0b0b_0%,#050505_100%)] shadow-[20px_0_60px_rgba(0,0,0,0.45)]">
+            <div className="flex h-full flex-col">
+              <div className="flex items-center justify-between border-b border-white/[0.05] px-5 py-4">
+                <button onClick={() => { navigate("/"); setMobileOpen(false); }} className="flex min-w-0 items-center gap-3">
+                  <img
+                    src={Logo}
+                    alt=""
+                    className="h-10 w-10 rounded-full object-contain drop-shadow-[0_0_24px_rgba(232,118,45,0.28)]"
+                  />
+                  <p className="truncate text-sm font-semibold" style={{ fontFamily: "var(--font-display)" }}>
+                    PHASE<span className="text-[var(--color-accent)]"> RECORDS</span>
+                  </p>
                 </button>
-              ) : (
-                <div className="grid grid-cols-2 gap-3">
-                  <button onClick={() => guardedNavigate("/login")} className="btn-primary">Войти</button>
-                  <button onClick={() => guardedNavigate("/register")} className="btn-ghost">Регистрация</button>
+                <button
+                  type="button"
+                  className="shrink-0 rounded-lg bg-white/[0.06] p-2 text-white hover:bg-white/[0.1]"
+                  onClick={() => setMobileOpen(false)}
+                  aria-label={"\u0417\u0430\u043a\u0440\u044b\u0442\u044c \u043c\u0435\u043d\u044e"}
+                >
+                  <X size={22} />
+                </button>
+              </div>
+
+              <nav className="flex-1 overflow-y-auto px-4 pb-6 pt-5">
+                <div className="space-y-1">
+                  {navItems.map((item, i) => (
+                    <NavLink
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setMobileOpen(false)}
+                      className={({ isActive }) =>
+                        `flex items-center justify-between py-4 px-4 rounded-xl text-lg font-medium transition-colors ${
+                          isActive
+                            ? "text-[var(--color-accent)] bg-[var(--color-accent-dim)]"
+                            : "text-white hover:bg-white/[0.04]"
+                        }`
+                      }
+                      style={{ animation: `slideUp 0.3s ease ${i * 0.04}s both` }}
+                    >
+                      <span>{item.label}</span>
+                      <ChevronRight size={16} className="opacity-30" />
+                    </NavLink>
+                  ))}
                 </div>
-              )}
+
+                <div className="mt-4 space-y-1 border-t border-white/[0.05] pt-4">
+                  <button
+                    onClick={() => guardedNavigate("/cart")}
+                    className="flex items-center justify-between w-full py-4 px-4 rounded-xl text-lg font-medium text-white hover:bg-white/[0.04]"
+                  >
+                    <span>{"\u041a\u043e\u0440\u0437\u0438\u043d\u0430"}</span>
+                    <span className="relative inline-flex">
+                      <ShoppingCart size={18} className="opacity-40" />
+                      {cartCount > 0 && (
+                        <span className="absolute -right-2.5 -top-2.5 min-w-[18px] h-[18px] rounded-full bg-[var(--color-accent)] px-1 text-center text-[10px] font-bold leading-[18px] text-black shadow-[0_0_18px_rgba(232,118,45,0.55)]">
+                          {cartCountLabel}
+                        </span>
+                      )}
+                    </span>
+                  </button>
+                  <button
+                    onClick={() => guardedNavigate("/profile")}
+                    className="flex items-center justify-between w-full py-4 px-4 rounded-xl text-lg font-medium text-white hover:bg-white/[0.04]"
+                  >
+                    <span>{"\u041f\u0440\u043e\u0444\u0438\u043b\u044c"}</span>
+                    <User size={18} className="opacity-40" />
+                  </button>
+                </div>
+
+                <div className="mt-6 border-t border-white/[0.05] px-1 pt-6">
+                  {isAuthenticated ? (
+                    <button
+                      onClick={() => { logout(); setMobileOpen(false); }}
+                      className="btn-ghost w-full"
+                    >
+                      {"\u0412\u044b\u0439\u0442\u0438"}
+                    </button>
+                  ) : (
+                    <div className="grid grid-cols-2 gap-3">
+                      <button onClick={() => guardedNavigate("/login")} className="btn-primary min-w-0">{"\u0412\u043e\u0439\u0442\u0438"}</button>
+                      <button onClick={() => guardedNavigate("/register")} className="btn-ghost min-w-0">{"\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044f"}</button>
+                    </div>
+                  )}
+                </div>
+              </nav>
             </div>
-          </nav>
+          </div>
         </div>
       )}
     </>

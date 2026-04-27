@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
+from django.contrib.auth.forms import ReadOnlyPasswordHashField, UserChangeForm as DjangoUserChangeForm
 from django.utils.html import format_html, format_html_join
 from unfold.admin import ModelAdmin, TabularInline
 
@@ -22,9 +23,20 @@ admin.site.site_title = "Phase Records Admin"
 admin.site.index_title = "Управление сайтом, бронированиями и заказами"
 
 
+class UserChangeForm(DjangoUserChangeForm):
+    password = ReadOnlyPasswordHashField(
+        label="\u041f\u0430\u0440\u043e\u043b\u044c",
+        help_text="\u041f\u0430\u0440\u043e\u043b\u044c \u0445\u0440\u0430\u043d\u0438\u0442\u0441\u044f \u0432 \u0437\u0430\u0449\u0438\u0449\u0451\u043d\u043d\u043e\u043c \u0432\u0438\u0434\u0435. \u0415\u0441\u043b\u0438 \u043d\u0443\u0436\u043d\u043e, \u043d\u0438\u0436\u0435 \u043c\u043e\u0436\u043d\u043e \u0437\u0430\u0434\u0430\u0442\u044c \u043d\u043e\u0432\u044b\u0439.",
+    )
+
+    class Meta(DjangoUserChangeForm.Meta):
+        model = User
+        fields = "__all__"
+
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
     model = User
+    form = UserChangeForm
     list_display = (
         "id",
         "username",
