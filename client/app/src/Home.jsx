@@ -53,11 +53,11 @@ const releases = [
   { id: 1, title: "VULTURES 2", artist: "¥$, Kanye West & Ty Dolla $ign", cover: vultures2, year: "2024", url: "https://www.youtube.com/watch?v=e6fCgEmZLLE" },
   { id: 2, title: "NIGHTS LIKE THIS", artist: "The Kid LAROI", cover: nightsLikeThis, year: "2023", url: "https://www.youtube.com/watch?v=dFr4NU9C0HE" },
   { id: 3, title: "Sensational", artist: "WizTheMc", cover: sensational, year: "2025", url: "https://www.youtube.com/watch?v=7QUkEd5PBH0" },
-  { id: 4, title: "All Hope Is Gone", artist: "Slipknot", cover: allHopeIsGone, year: "2008", url: "#" },
-  { id: 5, title: "Boy", artist: "2hollis", cover: boy, year: "2024", url: "#" },
-  { id: 6, title: "I AM MUSIC", artist: "Playboi Carti", cover: iAmMusic, year: "2025", url: "#" },
-  { id: 7, title: "LONG.LIVE.A$AP", artist: "A$AP Rocky", cover: longLiveAsap, year: "2013", url: "#" },
-  { id: 8, title: "Heroes & Villains", artist: "Metro Boomin", cover: heroesVillains, year: "2022", url: "#" },
+  { id: 4, title: "All Hope Is Gone", artist: "Slipknot", cover: allHopeIsGone, year: "2008", url: "https://www.youtube.com/watch?v=5abamRO41fE&list=PLvXUqfNLb-tlw1pyu8GYsjIzMe6HYtDSa&index=4" },
+  { id: 5, title: "Boy", artist: "2hollis", cover: boy, year: "2024", url: "https://www.youtube.com/watch?v=PwxZQ3CrSvo&list=PL_Id1HN-E85dfOOcWATQBZJL8bPuFx-fU" },
+  { id: 6, title: "I AM MUSIC", artist: "Playboi Carti", cover: iAmMusic, year: "2025", url: "https://www.youtube.com/watch?v=flQ0q8clrWw&list=OLAK5uy_kfvO_aIjaCT-nbmjApgekNZavPP-dZV_I" },
+  { id: 7, title: "LONG.LIVE.A$AP", artist: "A$AP Rocky", cover: longLiveAsap, year: "2013", url: "https://www.youtube.com/watch?v=C9mquL8JLLM&list=PL8YH4mOwWryX0Q94XlzjkMyDzgBFdspip" },
+  { id: 8, title: "Heroes & Villains", artist: "Metro Boomin", cover: heroesVillains, year: "2022", url: "https://www.youtube.com/watch?v=CmSRd6S9Gx4&list=PLxA687tYuMWhYCOhY98pYQipSNmBy-qaB&index=3" },
 ];
 
 const buildDemoPairs = (tracks) => {
