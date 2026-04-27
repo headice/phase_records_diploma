@@ -192,7 +192,7 @@ export default function Cart() {
                   <div key={`${item.type}-${item.id}`} className="card p-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                     <div className="min-w-0">
                       <p className="label-eyebrow text-[10px]">{item.type}</p>
-                      <h3 className="text-sm font-semibold truncate">{item.name}</h3>
+                      <h3 className="text-sm font-semibold break-words">{item.name}</h3>
                       <p className="text-xs text-[var(--color-text-dim)]">{item.tag}</p>
                     </div>
                     <div className="flex flex-wrap items-center justify-between gap-4 sm:justify-end sm:shrink-0">
@@ -219,7 +219,7 @@ export default function Cart() {
                           <Plus size={14} />
                         </button>
                       </div>
-                      <div className="text-right">
+                      <div className="min-w-[88px] text-right">
                         <p className="text-sm font-semibold text-[var(--color-accent)]">{item.price}</p>
                         <p className="text-xs text-[var(--color-text-dim)]">
                           {(item.priceValue * item.quantity).toLocaleString("ru-RU")} ₽
@@ -238,18 +238,18 @@ export default function Cart() {
                 ))}
               </div>
 
-              <div className="card p-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div className="card p-5 sm:p-6 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm text-[var(--color-text-muted)]">Предварительная сумма</p>
                   <p className="text-2xl font-bold text-[var(--color-accent)]" style={{ fontFamily: "var(--font-display)" }}>
                     {total.toLocaleString("ru-RU")} ₽
                   </p>
                 </div>
-                <div className="flex gap-3">
-                  <button onClick={clearCart} className="btn-ghost !py-2.5">
+                <div className="grid w-full grid-cols-1 gap-3 sm:w-auto sm:grid-cols-2">
+                  <button onClick={clearCart} className="btn-ghost w-full !py-2.5 !px-4">
                     Очистить
                   </button>
-                  <button onClick={handleCheckout} className="btn-primary !py-2.5">
+                  <button onClick={handleCheckout} className="btn-primary w-full !py-2.5 !px-4">
                     <CreditCard size={14} /> Оформить заказ
                   </button>
                 </div>
