@@ -14,6 +14,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 USE_SQLITE = os.getenv("DJANGO_USE_SQLITE", "False").lower() == "true"
+DATABASE_URL = os.getenv("DATABASE_URL", "").strip()
 
 
 def _split_csv(value, default=None):
@@ -93,7 +94,14 @@ TEMPLATES = [
 WSGI_APPLICATION = "phase_backend.wsgi.application"
 
 
-if os.getenv("POSTGRES_DB") and not USE_SQLITE:
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,
+        )
+    }
+elif os.getenv("POSTGRES_DB") and not USE_SQLITE:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
@@ -273,13 +281,6 @@ YOOKASSA_SECRET_KEY = os.getenv("YOOKASSA_SECRET_KEY", "")
 YOOKASSA_RETURN_URL = os.getenv("YOOKASSA_RETURN_URL", "http://localhost:3000/cart?payment=return")
 YOOKASSA_API_URL = os.getenv("YOOKASSA_API_URL", "https://api.yookassa.ru/v3/payments")
 FRONTEND_BASE_URL = os.getenv("FRONTEND_BASE_URL", "http://localhost:3000").rstrip("/")
-
-DATABASES = {
-    "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
-        conn_max_age=600,
-    )
-}
 
 UNFOLD = {
     "SITE_TITLE": "Phase Records",
