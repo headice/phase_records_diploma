@@ -55,19 +55,21 @@
   .heading-section { font-family: var(--font-display); font-weight: 800; letter-spacing: 0; line-height: 1.15; }
   .label-eyebrow { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--color-accent); }
   .card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-xl); transition: border-color var(--duration-normal) var(--ease-out-expo), background-color var(--duration-normal) var(--ease-out-expo), box-shadow var(--duration-normal) var(--ease-out-expo), transform var(--duration-normal) var(--ease-out-expo); }
-  .card:hover { border-color: var(--color-border-hover); background-color: rgba(18,18,18,0.96); box-shadow: 0 18px 50px -42px rgba(232,118,45,0.38); }
-  .text-gradient { background: linear-gradient(135deg, var(--color-accent-light), var(--color-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .card:hover { border-color: var(--color-border-hover); background-color: rgba(18,18,18,0.96); box-shadow: 0 22px 58px -38px rgba(232,118,45,0.44); transform: translateY(-3px); }
+  .text-gradient { background: linear-gradient(110deg, var(--color-accent-light), var(--color-accent), #ffd0a8, var(--color-accent)); background-size: 220% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: textSheen 5.5s var(--ease-spring-soft) infinite; }
   .glow-accent { box-shadow: 0 0 60px -15px var(--color-accent-glow); }
   .card.glow-accent { box-shadow: none; }
   .btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.875rem 2rem; background: var(--color-accent); color: #000; font-weight: 600; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; border-radius: var(--radius-full); transition: background-color var(--duration-normal) var(--ease-out-expo), box-shadow var(--duration-normal) var(--ease-out-expo), transform var(--duration-normal) var(--ease-out-expo); border: none; cursor: pointer; }
   .btn-primary:hover { background: var(--color-accent-light); transform: translateY(-1px); box-shadow: 0 12px 40px -10px var(--color-accent-glow); }
+  .btn-primary:active,
+  .btn-ghost:active { transform: translateY(0) scale(0.98); }
   .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
   .btn-primary svg,
   .btn-ghost svg { transition: transform var(--duration-fast) var(--ease-spring-soft); }
   .btn-primary:hover svg,
   .btn-ghost:hover svg { transform: translateX(2px); }
   .btn-ghost { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.875rem 2rem; background: transparent; color: var(--color-text); font-weight: 500; font-size: 0.8125rem; letter-spacing: 0.04em; text-transform: uppercase; border: 1px solid var(--color-border); border-radius: var(--radius-full); transition: color var(--duration-normal) var(--ease-out-expo), border-color var(--duration-normal) var(--ease-out-expo), background-color var(--duration-normal) var(--ease-out-expo), transform var(--duration-normal) var(--ease-out-expo); cursor: pointer; }
-  .btn-ghost:hover { border-color: var(--color-accent); color: var(--color-accent-light); background-color: rgba(232,118,45,0.04); }
+  .btn-ghost:hover { border-color: var(--color-accent); color: var(--color-accent-light); background-color: rgba(232,118,45,0.05); transform: translateY(-1px); }
   .divider-glow { height: 1px; background: linear-gradient(90deg, transparent, var(--color-accent-dim), transparent); }
   .scrollbar-hide::-webkit-scrollbar { display: none; }
   .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
@@ -76,20 +78,28 @@
   .input-field:focus { border-color: var(--color-accent); background-color: rgba(255,255,255,0.045); box-shadow: 0 0 0 3px rgba(232,118,45,0.08); }
   .input-field::placeholder { color: var(--color-text-dim); }
   .content-auto { content-visibility: auto; contain-intrinsic-size: 900px; }
-  .hero-media-ambient { transform: scale(1.03); animation: heroDrift 14s var(--ease-spring-soft) infinite alternate; will-change: transform; }
-  .modal-panel { animation: modalLift 0.26s var(--ease-spring-soft) both; }
+  .hero-media-ambient { transform: scale(1.04); animation: heroDrift 10s var(--ease-spring-soft) infinite alternate; will-change: transform; }
+  .modal-panel { animation: modalLift 0.32s var(--ease-spring-soft) both; }
 }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes slideDown { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-@keyframes heroDrift { from { transform: scale(1.03) translate3d(0, 0, 0); } to { transform: scale(1.06) translate3d(0, -6px, 0); } }
-@keyframes modalLift { from { opacity: 0; transform: translateY(12px) scale(0.985); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes heroDrift { from { transform: scale(1.04) translate3d(0, 0, 0); } to { transform: scale(1.09) translate3d(0, -14px, 0); } }
+@keyframes modalLift { from { opacity: 0; transform: translateY(18px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes textSheen { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
 
 *:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 4px; }
 
-@media (max-width: 767px), (prefers-reduced-motion: reduce) {
+@media (max-width: 767px) {
+  .content-auto {
+    content-visibility: visible !important;
+    contain-intrinsic-size: auto !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .content-auto {
     content-visibility: visible !important;
@@ -102,6 +112,7 @@
   .card,
   .card img,
   .card button,
+  .text-gradient,
   .hero-media-ambient,
   .modal-panel,
   header,
@@ -113,6 +124,10 @@
   .hero-media-ambient,
   .modal-panel {
     transform: none !important;
+  }
+  .text-gradient {
+    animation: none !important;
+    background-position: 0 50% !important;
   }
   .glow-accent,
   .card.glow-accent {

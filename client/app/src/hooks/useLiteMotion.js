@@ -6,8 +6,7 @@ const getLiteMotionPreference = () => {
   }
 
   return (
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
-    window.matchMedia("(max-width: 767px)").matches
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
 };
 
@@ -20,17 +19,14 @@ export default function useLiteMotion() {
     }
 
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const mobileQuery = window.matchMedia("(max-width: 767px)");
     const update = () => setLiteMotion(getLiteMotionPreference());
 
     update();
 
     reducedMotionQuery.addEventListener?.("change", update);
-    mobileQuery.addEventListener?.("change", update);
 
     return () => {
       reducedMotionQuery.removeEventListener?.("change", update);
-      mobileQuery.removeEventListener?.("change", update);
     };
   }, []);
 
