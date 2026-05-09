@@ -1,27 +1,27 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://phase-records.example/</loc>
+    <loc>https://phase-records-diploma.vercel.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://phase-records.example/about</loc>
+    <loc>https://phase-records-diploma.vercel.app/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://phase-records.example/services</loc>
+    <loc>https://phase-records-diploma.vercel.app/services</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://phase-records.example/plugins</loc>
+    <loc>https://phase-records-diploma.vercel.app/plugins</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://phase-records.example/booking</loc>
+    <loc>https://phase-records-diploma.vercel.app/booking</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
