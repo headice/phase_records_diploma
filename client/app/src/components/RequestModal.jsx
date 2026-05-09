@@ -84,7 +84,7 @@ export default function RequestModal({ open, onClose, preset }) {
       aria-modal="true"
       aria-label="Форма заявки"
     >
-      <div className="relative card glow-accent max-w-lg w-full p-6 sm:p-8">
+      <div className="modal-panel relative card glow-accent max-w-lg w-full p-6 sm:p-8">
         <button
           type="button"
           onClick={onClose}

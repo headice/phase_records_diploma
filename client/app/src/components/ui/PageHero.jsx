@@ -12,8 +12,8 @@ export default function PageHero({ eyebrow, title, titleAccent, description, chi
             src={backgroundImage}
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover object-center"
-            fetchPriority="high"
+            className={`absolute inset-0 h-full w-full object-cover object-center ${liteMotion ? "" : "hero-media-ambient"}`}
+            fetchpriority="high"
             loading="eager"
             decoding="async"
           />
