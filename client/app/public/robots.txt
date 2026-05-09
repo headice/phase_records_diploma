@@ -1,4 +1,13 @@
-﻿User-agent: *
+User-agent: *
 Allow: /
 
-Sitemap: https://phase-records.example/sitemap.xml
+Disallow: /cart
+Disallow: /register
+Disallow: /login
+Disallow: /forgot-password
+Disallow: /reset-password/
+Disallow: /profile
+Disallow: /account
+
+Host: https://phase-records-diploma.vercel.app
+Sitemap: https://phase-records-diploma.vercel.app/sitemap.xml
