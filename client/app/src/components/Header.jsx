@@ -102,7 +102,7 @@ export default function Header() {
             >
               <ShoppingCart size={18} />
               {cartCount > 0 && (
-                <span className="absolute -right-1 -top-1 min-w-[18px] h-[18px] rounded-full bg-[var(--color-accent)] px-1 text-center text-[10px] font-bold leading-[18px] text-black shadow-[0_0_18px_rgba(232,118,45,0.55)]">
+                <span className="cart-badge-live absolute -right-1 -top-1 min-w-[18px] h-[18px] rounded-full bg-[var(--color-accent)] px-1 text-center text-[10px] font-bold leading-[18px] text-black shadow-[0_0_18px_rgba(232,118,45,0.55)]">
                   {cartCountLabel}
                 </span>
               )}
@@ -149,10 +149,9 @@ export default function Header() {
 
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-[60] bg-black/72 lg:hidden"
-          style={{ animation: "fadeIn 0.2s ease" }}
+          className="mobile-menu-backdrop fixed inset-0 z-[60] bg-black/72 lg:hidden"
         >
-          <div className="h-full w-full max-w-[360px] border-r border-white/[0.06] bg-[linear-gradient(180deg,#0b0b0b_0%,#050505_100%)] shadow-[20px_0_60px_rgba(0,0,0,0.45)]">
+          <div className="mobile-menu-panel h-full w-full max-w-[360px] border-r border-white/[0.06] bg-[linear-gradient(180deg,#0b0b0b_0%,#050505_100%)] shadow-[20px_0_60px_rgba(0,0,0,0.45)]">
             <div className="flex h-full flex-col">
               <div className="flex items-center justify-between border-b border-white/[0.05] px-5 py-4">
                 <button onClick={() => { navigate("/"); setMobileOpen(false); }} className="flex min-w-0 items-center gap-3">
@@ -183,13 +182,13 @@ export default function Header() {
                       to={item.path}
                       onClick={() => setMobileOpen(false)}
                       className={({ isActive }) =>
-                        `flex items-center justify-between py-4 px-4 rounded-xl text-lg font-medium transition-colors ${
+                        `mobile-menu-item flex items-center justify-between py-4 px-4 rounded-xl text-lg font-medium transition-colors ${
                           isActive
                             ? "text-[var(--color-accent)] bg-[var(--color-accent-dim)]"
                             : "text-white hover:bg-white/[0.04]"
                         }`
                       }
-                      style={{ animation: `slideUp 0.3s ease ${i * 0.04}s both` }}
+                      style={{ animationDelay: `${i * 0.04}s` }}
                     >
                       <span>{item.label}</span>
                       <ChevronRight size={16} className="opacity-30" />
@@ -206,7 +205,7 @@ export default function Header() {
                     <span className="relative inline-flex">
                       <ShoppingCart size={18} className="opacity-40" />
                       {cartCount > 0 && (
-                        <span className="absolute -right-2.5 -top-2.5 min-w-[18px] h-[18px] rounded-full bg-[var(--color-accent)] px-1 text-center text-[10px] font-bold leading-[18px] text-black shadow-[0_0_18px_rgba(232,118,45,0.55)]">
+                        <span className="cart-badge-live absolute -right-2.5 -top-2.5 min-w-[18px] h-[18px] rounded-full bg-[var(--color-accent)] px-1 text-center text-[10px] font-bold leading-[18px] text-black shadow-[0_0_18px_rgba(232,118,45,0.55)]">
                           {cartCountLabel}
                         </span>
                       )}

@@ -80,6 +80,11 @@
   .content-auto { content-visibility: auto; contain-intrinsic-size: 900px; }
   .hero-media-ambient { transform: scale(1.04); animation: heroDrift 10s var(--ease-spring-soft) infinite alternate; will-change: transform; }
   .modal-panel { animation: modalLift 0.32s var(--ease-spring-soft) both; }
+  .mobile-menu-backdrop { animation: fadeIn 0.22s var(--ease-out-expo) both; }
+  .mobile-menu-panel { animation: menuSlideIn 0.34s var(--ease-spring-soft) both; will-change: transform, opacity; }
+  .mobile-menu-item { animation: slideUp 0.3s var(--ease-spring-soft) both; }
+  .cart-badge-live { animation: badgePulse 2.4s var(--ease-spring-soft) infinite; }
+  .audio-progress-live { background-image: linear-gradient(90deg, var(--color-accent), var(--color-accent-light), var(--color-accent)); background-size: 220% 100%; animation: progressFlow 2.6s linear infinite; }
 }
 
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -89,6 +94,9 @@
 @keyframes heroDrift { from { transform: scale(1.04) translate3d(0, 0, 0); } to { transform: scale(1.09) translate3d(0, -14px, 0); } }
 @keyframes modalLift { from { opacity: 0; transform: translateY(18px) scale(0.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes textSheen { 0%, 100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+@keyframes menuSlideIn { from { opacity: 0; transform: translateX(-18px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes badgePulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 18px rgba(232,118,45,0.55); } 50% { transform: scale(1.08); box-shadow: 0 0 26px rgba(232,118,45,0.72); } }
+@keyframes progressFlow { from { background-position: 0% 50%; } to { background-position: 220% 50%; } }
 
 *:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 4px; }
 
@@ -115,6 +123,11 @@
   .text-gradient,
   .hero-media-ambient,
   .modal-panel,
+  .mobile-menu-backdrop,
+  .mobile-menu-panel,
+  .mobile-menu-item,
+  .cart-badge-live,
+  .audio-progress-live,
   header,
   nav a,
   nav button {
@@ -128,6 +141,13 @@
   .text-gradient {
     animation: none !important;
     background-position: 0 50% !important;
+  }
+  .mobile-menu-panel,
+  .cart-badge-live {
+    transform: none !important;
+  }
+  .audio-progress-live {
+    background-image: none !important;
   }
   .glow-accent,
   .card.glow-accent {

@@ -632,7 +632,7 @@ export default function Home() {
                 >
                   <div className="h-1.5 w-full rounded-full bg-white/[0.06]">
                     <div
-                      className="h-full rounded-full bg-[var(--color-accent)]"
+                      className={`h-full rounded-full bg-[var(--color-accent)] ${isPlaying && !liteMotion ? "audio-progress-live" : ""}`}
                       style={{ width: `${timelineProgress}%` }}
                     />
                   </div>
