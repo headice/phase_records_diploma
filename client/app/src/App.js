@@ -19,6 +19,7 @@ const Cart = lazy(() => import("./Cart.jsx"));
 const Booking = lazy(() => import("./Booking.jsx"));
 const ServiceDetails = lazy(() => import("./ServiceDetails.jsx"));
 const PluginDetails = lazy(() => import("./PluginDetails.jsx"));
+const NotFound = lazy(() => import("./NotFound.jsx"));
 const SITE_NAME = "Phase Records";
 const DEFAULT_DESCRIPTION = "Phase Records — студия звукозаписи во Владивостоке. Запись, сведение, мастеринг, аранжировки, онлайн-бронирование и цифровые продукты.";
 const DEFAULT_KEYWORDS = "студия звукозаписи, запись вокала, сведение, мастеринг, аранжировка, Phase Records, Владивосток";
@@ -124,9 +125,15 @@ const getRouteMeta = (pathname) => {
       description: "Личный кабинет пользователя с заказами, бронированиями и данными профиля.",
     };
   }
+  if (pathname === "/404") {
+    return {
+      title: `Страница не найдена — ${SITE_NAME}`,
+      description: "Запрошенная страница сайта Phase Records не найдена. Вернитесь на главную или откройте нужный раздел.",
+    };
+  }
   return {
-    title: `${SITE_NAME} — студия звукозаписи`,
-    description: DEFAULT_DESCRIPTION,
+    title: `Страница не найдена — ${SITE_NAME}`,
+    description: "Запрошенная страница сайта Phase Records не найдена. Вернитесь на главную или откройте нужный раздел.",
   };
 };
 
@@ -166,9 +173,10 @@ function AppRoutes() {
           <Route path="/cart" element={<PageTransition><Cart /></PageTransition>} />
           <Route path="/booking" element={<PageTransition><Booking /></PageTransition>} />
           <Route path="/booking/:serviceId" element={<PageTransition><Booking /></PageTransition>} />
+          <Route path="/404" element={<PageTransition><NotFound /></PageTransition>} />
           <Route path="/services/:serviceId" element={<PageTransition><ServiceDetails /></PageTransition>} />
           <Route path="/plugins/:pluginId" element={<PageTransition><PluginDetails /></PageTransition>} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
         </Routes>
       </Suspense>
     </AnimatePresence>
