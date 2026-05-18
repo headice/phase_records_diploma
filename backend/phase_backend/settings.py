@@ -27,6 +27,7 @@ def _default_dev_origins():
     return [
         "https://phase-records-diploma.onrender.com",
         "https://phase-records-diploma.vercel.app",
+        "https://phaserecords.ru",
     ]
 
 
