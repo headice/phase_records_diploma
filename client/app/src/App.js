@@ -269,6 +269,7 @@ export default function App() {
             <ScrollToTop />
             <ScrollToHash />
             <RouteMeta />
+            <Policy />
             <AppRoutes />
           </ShopProvider>
         </AuthProvider>
