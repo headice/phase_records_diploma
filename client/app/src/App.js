@@ -6,7 +6,7 @@ import { ShopProvider } from "./context/ShopContext";
 import { AuthProvider } from "./context/AuthContext";
 import PageTransition from "./components/PageTransition.jsx";
 import useLiteMotion from "./hooks/useLiteMotion";
-import { Policy } from "./components/Policy.jsx";
+import Policy from "./components/Policy.jsx";
 
 const Home = lazy(() => import("./Home.jsx"));
 const About = lazy(() => import("./About.jsx"));
