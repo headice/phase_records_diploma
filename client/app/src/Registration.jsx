@@ -19,6 +19,7 @@ export default function Registration() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [agree, setAgree] = useState(false);
 
   const completeAuthFlow = async () => {
     const pendingAction = peekPendingAuthAction();
@@ -157,7 +158,19 @@ export default function Registration() {
                 </p>
               )}
               <div className="space-y-3 pt-2">
-                <button type="submit" disabled={loading} className="btn-primary w-full !rounded-xl">
+                <div className="flex items-start gap-2 mt-4">
+  <input
+    type="checkbox"
+    id="agree"
+    checked={agree}
+    onChange={(e) => setAgree(e.target.checked)}
+  />
+
+  <label htmlFor="agree" className="text-sm">
+    Я согласен на обработку персональных данных.
+  </label>
+</div>
+                <button type="submit" disabled={!agree} className="btn-primary w-full !rounded-xl">
                   {loading ? "Создаём..." : "Создать аккаунт"}
                 </button>
                 <button
