@@ -259,7 +259,7 @@ DEFAULT_FROM_EMAIL = os.getenv(
 )
 ADMIN_NOTIFICATION_EMAIL = os.getenv(
     "ADMIN_NOTIFICATION_EMAIL",
-    "phase_records@mail.ru",
+    "phase.records@yandex.ru",
 ).strip()
 ADMIN_NOTIFICATION_RECIPIENTS = _split_csv(
     os.getenv("ADMIN_NOTIFICATION_RECIPIENTS"),
