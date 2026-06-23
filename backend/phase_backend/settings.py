@@ -230,9 +230,9 @@ EMAIL_PROVIDER_PRESETS = {
     },
     "yandex": {
         "host": "smtp.yandex.ru",
-        "port": 465,
-        "use_tls": False,
-        "use_ssl": True,
+        "port": 587,
+        "use_tls": True,
+        "use_ssl": False,
     },
     "custom": {
         "host": "",
