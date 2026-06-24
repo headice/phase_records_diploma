@@ -166,9 +166,15 @@ export default function Registration() {
     onChange={(e) => setAgree(e.target.checked)}
   />
 
-  <label htmlFor="agree" className="text-sm">
-    Я согласен на обработку персональных данных.
-  </label>
+ <label htmlFor="agree">
+  Я согласен с{" "}
+  <Link
+    to="/privacy"
+    className="text-[var(--color-accent)] underline"
+  >
+    политикой обработки персональных данных
+  </Link>
+</label>
 </div>
                 <button type="submit" disabled={!agree} className="btn-primary w-full !rounded-xl">
                   {loading ? "Создаём..." : "Создать аккаунт"}
