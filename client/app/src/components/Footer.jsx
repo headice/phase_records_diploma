@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "../img/phase-logo.svg";
 import SocialIcon from "./SocialIcon.jsx";
+import { Link } from "react-router-dom";
 
 const footerSections = [
   {
@@ -130,14 +131,17 @@ export default function Footer() {
             © {new Date().getFullYear()} Phase Records. Все права защищены.
           </p>
           <div className="flex gap-4 text-xs text-[var(--color-text-dim)]">
-            <button onClick={() => navigate("/contacts")} className="hover:text-[var(--color-text-muted)] transition-colors">
-              Политика конфиденциальности
-            </button>
+          <Link
+    to="/privacy"
+    className="text-[var(--color-accent)] underline hover:text-[var(--color-text-muted)] transition-colors"
+  >
+    политикой обработки персональных данных
+  </Link>
             <span>·</span>
             <span>Владивосток, ул. Алеутская, д.12</span>
           </div>
         </div>
       </div>
-    </footer>
+    <Footer/>
   );
 }
