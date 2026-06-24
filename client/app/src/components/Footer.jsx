@@ -133,9 +133,9 @@ export default function Footer() {
           <div className="flex gap-4 text-xs text-[var(--color-text-dim)]">
           <Link
     to="/privacy"
-    className="text-[var(--color-accent)] underline hover:text-[var(--color-text-muted)] transition-colors"
+    className="underline hover:text-[var(--color-text-muted)] transition-colors"
   >
-    политикой обработки персональных данных
+    Политика обработки персональных данных
   </Link>
             <span>·</span>
             <span>Владивосток, ул. Алеутская, д.12</span>
