@@ -11,6 +11,7 @@ import {
 } from "./utils/authFlow";
 import { sanitize, isValidEmail } from "./utils/sanitize";
 import "./input.css";
+import { Link } from "react-router-dom";
 
 export default function Registration() {
   const { register } = useContext(AuthContext);
