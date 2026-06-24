@@ -178,6 +178,14 @@ function AppRoutes() {
           <Route path="/services/:serviceId" element={<PageTransition><ServiceDetails /></PageTransition>} />
           <Route path="/plugins/:pluginId" element={<PageTransition><PluginDetails /></PageTransition>} />
           <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
+          <Route
+  path="/privacy"
+  element={
+    <PageTransition>
+      <PrivacyPolicy />
+    </PageTransition>
+  }
+/>
         </Routes>
       </Suspense>
     </AnimatePresence>
