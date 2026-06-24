@@ -1,6 +1,10 @@
+import Header from "./components/Header.jsx";
+import Footer from "./components/Footer.jsx";
+
 export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-[var(--color-bg)] text-white py-20 px-6">
+      <Header/>
       <div className="max-w-4xl mx-auto space-y-8">
         <h1 className="text-4xl font-bold">
           Политика обработки персональных данных
@@ -74,6 +78,7 @@ export default function PrivacyPolicy() {
           </p>
         </section>
       </div>
+      <Footer/>
     </div>
   );
 }
