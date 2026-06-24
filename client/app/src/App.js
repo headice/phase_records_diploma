@@ -21,6 +21,7 @@ const Booking = lazy(() => import("./Booking.jsx"));
 const ServiceDetails = lazy(() => import("./ServiceDetails.jsx"));
 const PluginDetails = lazy(() => import("./PluginDetails.jsx"));
 const NotFound = lazy(() => import("./NotFound.jsx"));
+const PrivacyPolicy = lazy(() => import("./PrivacyPolicy.jsx"));
 const SITE_NAME = "Phase Records";
 const DEFAULT_DESCRIPTION = "Phase Records — студия звукозаписи во Владивостоке. Запись, сведение, мастеринг, аранжировки, онлайн-бронирование и цифровые продукты.";
 const DEFAULT_KEYWORDS = "студия звукозаписи, запись вокала, сведение, мастеринг, аранжировка, Phase Records, Владивосток";
